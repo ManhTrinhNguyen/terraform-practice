@@ -68,3 +68,14 @@ terraform apply -var-file="dev.tfvars"
 
 ### Terraform EKS module docs 
 https://github.com/terraform-aws-modules/terraform-aws-eks?utm_source=chatgpt.com
+
+### Attach User Admin Policy 
+
+```
+aws eks associate-access-policy \
+  --cluster-name eks-cluster \
+  --principal-arn arn:aws:iam::660753258283:user/trinhnguyen \
+  --access-scope type=cluster \
+  --policy-arn arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy \
+  --region us-west-1
+```

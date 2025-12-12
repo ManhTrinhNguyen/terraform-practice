@@ -1,0 +1,37 @@
+architecture: "replication"
+
+global:
+  security:
+    allowInsecureImages: True
+
+image:
+  registry: docker.io
+  tag: latest
+  repository: bitnamilegacy/mysql 
+
+global:
+  defaultStorageClass: gp2
+
+primary: 
+  persistence: 
+    enabled: true 
+    storageClass: gp2
+
+secondary:
+  replicaCount: 1
+  persistence: 
+    enabled: true
+    storageClass: gp2
+
+auth: 
+  database: my_database
+  username: tim
+  rootPassword: rootPassword
+  password: password 
+
+volumePermissions:
+  enabled: true
+  image:
+    registry: docker.io
+    repository: bitnami/os-shell
+    tag: latest
