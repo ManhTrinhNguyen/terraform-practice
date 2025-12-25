@@ -1,6 +1,7 @@
 architecture: "replication"
 
 global:
+  defaultStorageClass: gp2
   security:
     allowInsecureImages: True
 
@@ -8,9 +9,6 @@ image:
   registry: docker.io
   tag: latest
   repository: bitnamilegacy/mysql 
-
-global:
-  defaultStorageClass: gp2
 
 primary: 
   persistence: 

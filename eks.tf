@@ -1,11 +1,11 @@
-# terraform {
-#  required_version = ">= 0.12"
-#  backend "s3" {
-#   bucket = "tf-state-list-tim"
-#   key = "state.tfstate"
-#   region = "us-west-1"
-#  }
-# }
+terraform {
+ required_version = ">= 0.12"
+ backend "s3" {
+  bucket = "tf-state-list-tim"
+  key = "state.tfstate"
+  region = "us-west-1"
+ }
+}
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "20.35.0"
@@ -49,6 +49,18 @@ module "eks" {
   }
 
   fargate_profiles = {
+    coredns = {
+    name = "coredns"
+    subnet_ids = module.vpc.private_subnets
+    selectors = [
+    {
+        namespace = "kube-system"
+        labels = {
+          "k8s-app" = "kube-dns" 
+          }
+        }
+      ]
+    }
     java-app = {
       name = "java-app-fargate"
       subnet_ids = module.vpc.private_subnets
