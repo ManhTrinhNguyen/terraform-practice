@@ -14,4 +14,8 @@ variable "public_subnets" {
   type = list
 }
 
+variable "eks_name" {
+  type = string
+}
+
 
