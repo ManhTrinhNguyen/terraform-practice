@@ -1,9 +1,10 @@
 pipeline {
     agent any
     stages {
-        stage('Example') {
+        stage('Provision EKS Cluster') {
             steps {
-                echo 'Hello World'
+                echo 'Test'
+                sh 'terraform version'
             }
         }
     }
