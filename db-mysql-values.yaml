@@ -1,4 +1,4 @@
-architecture: "replication"
+architecture: "standalone"
 
 global:
   defaultStorageClass: gp2
@@ -15,11 +15,11 @@ primary:
     enabled: true 
     storageClass: gp2
 
-secondary:
-  replicaCount: 1
-  persistence: 
-    enabled: true
-    storageClass: gp2
+# secondary:
+#   replicaCount: 1
+#   persistence: 
+#     enabled: true
+#     storageClass: gp2
 
 auth: 
   database: my_database

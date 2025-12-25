@@ -11,10 +11,9 @@ pipeline {
                 echo 'Provisioning'
                 sh 'terraform init'
                 sh 'terraform apply --auto-approve'
+
+                sh "aws eks update-kubeconfig --name ${eks_name} --region us-west-1"
             }
         }
     }
 }
-
-// aws eks update-kubeconfig --name eks-cluster --region us-west-1
-
